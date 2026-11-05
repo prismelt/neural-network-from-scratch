@@ -4,9 +4,7 @@ An educational project for beginners learning neural network fundamentals, inclu
 
 ## Project goals
 
-- Teach neural network concepts through explanations, illustrations, and runnable examples.
-- Build a coherent neural network implementation from scratch in Python.
-- Keep the mathematics and implementation approachable to learners who are new to the subject.
+The objective of this project is to break down the seeming extremely topic: **Neural Network** and **Machine Learning**. We wish to delineate the underlying concepts and clarify common misunderstandings by constructing mathematical operations and algorithms from scratch. We are dedicated to make this experience consumable, engaging, and rewarding for anyone wishing to embark on this journey.
 
 ## Start locally
 
@@ -59,4 +57,6 @@ To install uv, follow the [official uv installation guide](https://docs.astral.s
 uv add --dev jupyterlab
 ```
 
-Record the source and license for external datasets, images, and other materials added to the project.
+## Citations
+
+_Harrison Kinsley & Daniel Kukiela. Neural Network from Scratch (NNFS) . https://nnfs.io_
