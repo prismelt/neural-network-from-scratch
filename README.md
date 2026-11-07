@@ -8,14 +8,17 @@ The objective of this project is to break down the seeming extremely topic: **Ne
 
 ## Start locally
 
-From the project directory, sync the project environment and launch JupyterLab:
+From the project directory, sync the project environment using `uv`:
 
 ```bash
 uv sync
-uv run jupyter lab
 ```
 
-Open a lesson notebook from `notebooks/` in the JupyterLab page. The notebook lessons are planned; until they are added, the Python package is under development in `src/neural_network/`.
+You can launch and view jupyter notebooks directly in a coding editor such as `visual studio code`. You can also view them in the browser by running:
+
+```bash
+uv run jupyter lab
+```
 
 ## Project layout
 
@@ -35,7 +38,7 @@ Open a lesson notebook from `notebooks/` in the JupyterLab page. The notebook le
 └── docs/                  # Documentations
 ```
 
-The package currently lives in `src/neural_network/`. Other directories in the layout are intended homes for the project materials as they are added. Keep large downloaded or generated datasets out of version control unless needed; document dataset sources and licenses in `data/README.md`.
+The `src` directory includes full implementations of neural networks and other algorithms. It consists implementations in `jax` and `numpy` from scratch. The `notebooks` directories includes notebooks with in-depth explanation of concepts, details, and code fragments in small, consumable pieces. Other directories serve purposes such as storing local datasets and benchmarking.
 
 ## Run tests
 
@@ -45,7 +48,7 @@ Run the test suite from the project directory:
 uv run pytest
 ```
 
-Add or update pytest tests when implementation behavior changes. Tests and dependencies are still being established in this early project, so this command may not have tests to run yet.
+Tests and dependencies are still being established in this early project, so this command may not have tests to run yet.
 
 ## Development notes
 
