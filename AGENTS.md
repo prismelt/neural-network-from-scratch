@@ -22,6 +22,8 @@ This repository teaches neural network fundamentals to beginners through explana
 
 ## Notebooks and learning materials
 
+- Use plain python and implement algorithms from scratch, unless instructed otherwise or an external library is absolutely necessary.
+- Always use LaTeX math expressions (between two $ signs) for all math formulas and works.
 - Present concepts in a progression suitable for beginners. Introduce notation before relying on it.
 - Use Markdown cells to explain the idea, then use diagrams or code examples to make it concrete.
 - Keep notebook examples runnable and focused. Avoid duplicating the full implementation when a notebook can import and demonstrate code from the package.

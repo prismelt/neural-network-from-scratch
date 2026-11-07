@@ -1,0 +1,44 @@
+"""
+Download and save a simple monthly Alphabet stock-price dataset for 2025.
+The output has two columns: X is the month number and y is the High-Low midpoint.
+The small CSV can be read without accessing the network.
+
+To reproduce the data, run
+```bash
+uv run --no-project --with yfinance python scripts/prepare_stock_data.py
+```
+"""
+
+from pathlib import Path
+
+import yfinance as yf
+
+
+def main() -> None:
+    """Save month numbers and first-day high-low midpoint prices as X and y."""
+    project_directory: Path = Path(__file__).resolve().parent.parent
+    output_path: Path = project_directory / "data" / "google_stock_2025.csv"
+
+    daily_prices = yf.Ticker("GOOGL").history(
+        start="2025-04-01",
+        end="2026-01-01",
+        interval="1d",
+        auto_adjust=False,
+    )
+    if daily_prices.empty:
+        raise RuntimeError("No prices were returned. Check the ticker or data source.")
+
+    daily_prices.index = daily_prices.index.tz_localize(None)
+    first_trading_days = daily_prices.groupby(daily_prices.index.to_period("M")).head(1)
+    monthly_data = first_trading_days[["High", "Low"]].copy()
+    monthly_data.insert(0, "X", first_trading_days.index.month)
+    monthly_data["y"] = (monthly_data["High"] + monthly_data["Low"]) / 2
+    monthly_data = monthly_data[["X", "y"]]
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    monthly_data.to_csv(output_path, index=False)
+    print(f"Saved {len(monthly_data)} monthly rows to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
