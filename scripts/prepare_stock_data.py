@@ -15,14 +15,14 @@ from pathlib import Path
 import yfinance as yf
 
 
-def main() -> None:
+def load_stock_price(name: str, start: str, end: str) -> None:
     """Save month indexes and first-day high-low midpoint prices as X and y."""
     project_directory: Path = Path(__file__).resolve().parent.parent
-    output_path: Path = project_directory / "data" / "google_stock_2025.csv"
+    output_path: Path = project_directory / "data" / name
 
     daily_prices = yf.Ticker("GOOGL").history(
-        start="2025-04-01",
-        end="2026-01-01",
+        start=start,
+        end=end,
         interval="1d",
         auto_adjust=False,
     )
@@ -39,8 +39,9 @@ def main() -> None:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     monthly_data.to_csv(output_path, index=False)
-    print(f"Saved {len(monthly_data)} monthly rows to {output_path}")
+    print(f"Saved Stock Price {len(monthly_data)} monthly rows to {output_path}")
 
 
 if __name__ == "__main__":
-    main()
+    load_stock_price("google_stock_2025.csv", "2025-04-01", "2026-01-01")
+    load_stock_price("google_stock_2026.csv", "2026-01-02", "2026-04-01")
