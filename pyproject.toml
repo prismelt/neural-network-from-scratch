@@ -1,18 +1,16 @@
 [project]
 name = "neural-network"
 version = "0.1.0"
-description = "Add your description here"
+description = "Introductory lessons on machine learning and neural networks"
 readme = "README.md"
 authors = [
     { name = "Developer", email = "epistula.kunyu@gmail.com" }
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "jax>=0.6.2",
     "matplotlib>=3.10.9",
     "numpy>=2.2.6",
     "pandas>=2.3.3",
-    "pytest>=9.2.0",
 ]
 
 [project.scripts]
@@ -25,4 +23,5 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "jupyterlab>=4.6.5",
+    "pytest>=9.2.0",
 ]
