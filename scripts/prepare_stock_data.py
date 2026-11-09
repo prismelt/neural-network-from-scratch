@@ -1,6 +1,7 @@
 """
 Download and save a simple monthly Alphabet stock-price dataset for 2025.
-The output has two columns: X is the month number and y is the High-Low midpoint.
+The output has two columns: X is a month index starting at 0, and y is the
+High-Low midpoint of that month's first trading day.
 The small CSV can be read without accessing the network.
 
 To reproduce the data, run
@@ -15,7 +16,7 @@ import yfinance as yf
 
 
 def main() -> None:
-    """Save month numbers and first-day high-low midpoint prices as X and y."""
+    """Save month indexes and first-day high-low midpoint prices as X and y."""
     project_directory: Path = Path(__file__).resolve().parent.parent
     output_path: Path = project_directory / "data" / "google_stock_2025.csv"
 
@@ -31,7 +32,8 @@ def main() -> None:
     daily_prices.index = daily_prices.index.tz_localize(None)
     first_trading_days = daily_prices.groupby(daily_prices.index.to_period("M")).head(1)
     monthly_data = first_trading_days[["High", "Low"]].copy()
-    monthly_data.insert(0, "X", first_trading_days.index.month)
+    month_index = list(range(len(first_trading_days)))
+    monthly_data.insert(0, "X", month_index)
     monthly_data["y"] = (monthly_data["High"] + monthly_data["Low"]) / 2
     monthly_data = monthly_data[["X", "y"]]
 

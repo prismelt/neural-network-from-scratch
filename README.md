@@ -28,17 +28,14 @@ uv run jupyter lab
 ├── AGENTS.md
 ├── pyproject.toml
 ├── uv.lock
-├── notebooks/             # Explanations, images, and executable lessons
-├── src/
-│   └── neural_network/    # From-scratch Python implementation
-├── tests/                 # Pytest tests for the implementation
-├── data/                  # Data used in lessons and examples
-├── assets/                # Images and other notebook source materials
-├── examples/              # Standalone demonstrations
-└── docs/                  # Documentations
+├── notebooks/             # Lessons
+├── src/neural_network/    # Package placeholder
+├── scripts/               # Dataset preparation
+├── data/                  # Small teaching datasets
+└── assets/                # Notebook images
 ```
 
-The `src` directory includes full implementations of neural networks and other algorithms. It consists implementations in `jax` and `numpy` from scratch. The `notebooks` directories includes notebooks with in-depth explanation of concepts, details, and code fragments in small, consumable pieces. Other directories serve purposes such as storing local datasets and benchmarking.
+The first lesson is `notebooks/01-introduction-to-machine-learning.ipynb`. It fits a line and an exponential curve in plain Python. `src/neural_network` is a package placeholder; the from-scratch library is not implemented yet. `scripts/prepare_stock_data.py` rebuilds `data/google_stock_2025.csv`.
 
 ## Run tests
 
@@ -48,17 +45,13 @@ Run the test suite from the project directory:
 uv run pytest
 ```
 
-Tests and dependencies are still being established in this early project, so this command may not have tests to run yet.
+There are no tests yet, so pytest reports that none were collected.
 
 ## Development notes
 
-Use uv to manage project dependencies. Add a runtime dependency with `uv add <package>` or a development dependency with `uv add --dev <package>`, then keep `pyproject.toml` and `uv.lock` in sync. The project currently has no runtime dependencies.
+Use uv to manage project dependencies. Add a runtime dependency with `uv add <package>` or a development dependency with `uv add --dev <package>`, then keep `pyproject.toml` and `uv.lock` in sync. Runtime dependencies are matplotlib, numpy, and pandas. The first notebook uses matplotlib and the Python standard library. JupyterLab and pytest are development dependencies.
 
-To install uv, follow the [official uv installation guide](https://docs.astral.sh/uv/getting-started/installation/). JupyterLab should be added as a development dependency when notebook work begins:
-
-```bash
-uv add --dev jupyterlab
-```
+To install uv, follow the [official uv installation guide](https://docs.astral.sh/uv/getting-started/installation/).
 
 ## Citations
 
