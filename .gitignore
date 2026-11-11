@@ -9,5 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+# Notebook-generated files
+notebooks/.ipynb_checkpoints
+
 # Licensed Document
 docs/neural-networks-in-python.pdf
