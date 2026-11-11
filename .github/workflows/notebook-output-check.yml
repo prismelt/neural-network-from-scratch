@@ -1,0 +1,22 @@
+name: Notebook output check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-notebook-outputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Check that notebooks have no saved outputs
+        run: python scripts/clear_notebook_outputs.py --check

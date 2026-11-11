@@ -20,6 +20,22 @@ You can launch and view jupyter notebooks directly in a coding editor such as `v
 uv run jupyter lab
 ```
 
+## Keep notebook files clean
+
+To clear saved cell outputs and execution counts from all notebooks, run:
+
+```bash
+uv run scripts/clear_notebook_outputs.py
+```
+
+To have Git check notebooks before each push in this checkout, install the repository hook once:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+If the hook finds outputs, it clears them and stops the push so you can review and commit the cleaned notebook. Push again after committing. The GitHub Actions workflow checks pushed commits and pull requests for saved notebook outputs as a second safeguard.
+
 ## Project layout
 
 ```text

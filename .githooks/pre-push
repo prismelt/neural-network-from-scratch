@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -eu
+
+repository_root=$(git rev-parse --show-toplevel)
+cd "$repository_root"
+
+if python3 scripts/clear_notebook_outputs.py --check; then
+    exit 0
+fi
+
+python3 scripts/clear_notebook_outputs.py
+echo "Notebook outputs were cleared. Review and commit the cleaned notebooks, then push again." >&2
+exit 1
